@@ -1,0 +1,18 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Start MySQL and Laravel
+    init: |
+      sudo service mysql start
+      mysql -u root -e "CREATE DATABASE IF NOT EXISTS lab_db;"
+    command: |
+      cd laravel-app
+      php artisan migrate
+      php artisan serve --host=0.0.0.0 --port=8000
+
+ports:
+  - port: 8000
+    onOpen: open-preview
+  - port: 3306
+    onOpen: ignore
