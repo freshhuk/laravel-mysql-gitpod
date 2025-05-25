@@ -45,4 +45,19 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function isAdmin()
+{
+    return $this->role === 'admin';
+}
+
+public function isManager()
+{
+    return $this->role === 'manager';
+}
+
+public function notes()
+{
+    return $this->hasMany(Note::class);
+}
+
 }
